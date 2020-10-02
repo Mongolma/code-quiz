@@ -152,6 +152,7 @@ function showQuestions() {
   }
   //When questions are done ask user to submit score
   function endGame() {
+    stopTimer();
     //Create submit btn
     let submitHiSc = document.createElement("button");
     //Give class to the btn
@@ -214,29 +215,8 @@ function showQuestions() {
         localStorage.setItem("localhighScores", JSON.stringify(highScores));
       }
 
-      // var highScores = [];
-
       console.log(JSON.parse(localStorage.getItem("localhighScores")));
-      // if (localStorage.getItem("localhighScores")) {
-      //   highScores = JSON.parse(highscores);
-      // } else {
-      //   var highScores = [];
-      // }
-
-      // localStorage.setItem("input", highscore);
-      // window.location.href = "./scores.html";
     };
-    // submitHiSc.addEventListener("click", function () {
-    //   var highScores = [];
-    //   if (localStorage.getItem("localhighScores")) {
-    //     highScores = JSON.parse(highscores);
-    //   } else {
-    //     var highScores = [];
-    //   }
-    //   var userName = document.getElementById("input").value;
-    //   var highscore = document.getElementsByTagName("input").value;
-    //   localStorage.setItem("input", highscore);
-    // });
 
     containerEl.innerHTML = "";
     var endGameEl = document.createElement("div");
@@ -253,11 +233,6 @@ function showQuestions() {
     endGameEl.appendChild(cancelBtn);
   }
 }
-// <button id='submit-btn' class='btn btn-primary'>submit</button>
-
-//keep scores into localStorage
-//need to rank the scores
-//addEventListener to highest score btn
 
 function penaltyTime() {
   var penalty = 15;
@@ -283,29 +258,17 @@ function stopTimer() {
   clearInterval(mainInterval);
 }
 
-function highScore() {
-  var scores = [];
-}
-
 document.addEventListener("click", function (e) {
-  // console.log(e.target.id);
   if (e.target.id === "btn") {
   }
 });
-// document.addEventListener("click", function (e) {
-//   console.log(e.target.id);
-//   if (e.target.id === "view-highscore-btn") {
-//     console.log(e.target.id);
-//   }
-// });
+
 document.addEventListener("click", function () {
   document.getElementById("submit-btn");
-  // window.location.href = "./scores.html";
 });
 
 quiz.addEventListener("click", function () {
   document.querySelector(".main-container").innerHTML = "";
-  // currentQuestion = 0;
   showQuestions();
   startTimer();
 });
