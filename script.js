@@ -6,58 +6,65 @@ let score = 0;
 let currentQuestion = 0;
 const questions = [
   {
-    question: "What is a variable?",
+    question:
+      "What is the correct JavaScript syntax to change the content of the HTML element below? <br> <br>" +
+      "&lt;p id='demo'&gt;This is a demonstration.&lt;/p&gt;",
+
     answer: [
-      "Store for your information",
-      "It let you group series of statement together to perform a special task",
-      "Variable is for dealing with more than one function at a time",
-      "Its used to remove elements from DOM",
+      "document.getElement('p').innerHTML = 'Hello World!'",
+      "#demo.innerHTML = 'Hello World!'",
+      "document.getElementById('demo').innerHTML = 'Hello World!'",
+      "document.getElementByName('p').innerHTML = 'Hello World!'",
     ],
-    correctAnswer: "Store for your information",
-    usesAnswer: "Store for your information",
+    correctAnswer: "document.getElementById('demo').innerHTML = 'Hello World!'",
+    usesAnswer: "document.getElementById('demo').innerHTML = 'Hello World!'",
     time: 0,
   },
   {
-    question: "Which one is 'AND LOGICAL' operator?",
-    answer: ["&&", "||", "!", "="],
-    correctAnswer: "&&",
-    usesAnswer: "&&",
+    question: "Where is the correct place to insert a JavaScript?",
+    answer: [
+      "The &lt;head&gt; section",
+      "Both the &lt;head&gt; section and the &lt;body&gt; section are correct",
+      "The &lt;body&gt; section",
+    ],
+    correctAnswer: "The &lt;body&gt; section",
+    usesAnswer: "The &lt;body&gt; section",
     time: 0,
   },
   {
-    question: "var colors = ['white','black','costume'];  colors[2] ='beige';",
+    question:
+      "What is the correct syntax for referring to an external script called 'xxx.js'?",
     answer: [
-      "var colors = ['white','beige','costume']",
-      "var colors = ['white','black','beige']",
-      "var colors = ['white','black','costume', 'beige']",
-      "var colors = ['white','black','costume']",
+      "&lt;script href'xxx.js'&gt;",
+      "&lt;script name='xxx.js'&gt;",
+      "&lt;script src='xxx.js'&gt;",
     ],
-    correctAnswer: "var colors = ['white','black','beige']",
-    usesAnswer: "var colors = ['white','black','beige']",
+    correctAnswer: "&lt;script src='xxx.js'&gt;",
+    usesAnswer: "&lt;script src='xxx.js'&gt;",
     time: 0,
   },
   {
-    question: "What is a variable?",
+    question: "Which one is uncorrect statement for parameter?",
     answer: [
-      "Store for your information",
-      "It let you group series of statement together to perform a special task",
-      "Variable is for dealing with more than one function at a time",
-      "Its used to remove elements from DOM",
+      "The items that appear inside parantheses are known as the parameters of the function",
+      "Inside the function parameters act like variable names",
+      "Sometimes function needs specific information (parameter) to perform its task",
+      "Parameter should start with number",
     ],
-    correctAnswer: "Store for your information",
-    usesAnswer: "Store for your information",
+    correctAnswer: "Parameter should start with number",
+    usesAnswer: "Parameter should start with number",
     time: 0,
   },
   {
-    question: "var colors = ['white','black','costume'];  colors[2] ='beige';",
+    question: "How do you write 'Hello World' in an alert box?",
     answer: [
-      "var colors = ['white','beige','costume']",
-      "var colors = ['white','black','beige']",
-      "var colors = ['white','black','costume', 'beige']",
-      "var colors = ['white','black','costume']",
+      "msgBox('Hello World')",
+      "msg('Hello World')",
+      "alertBox('Hello World')",
+      "alert('Hello World')",
     ],
-    correctAnswer: "var colors = ['white','black','beige']",
-    usesAnswer: "var colors = ['white','black','beige']",
+    correctAnswer: "alert('Hello World')",
+    usesAnswer: "alert('Hello World')",
     time: 0,
   },
 ];
@@ -186,12 +193,11 @@ function showQuestions() {
       if (localStorage.getItem("localhighScores")) {
         //Converting data from local storage to JavaScript object
         let highScores = JSON.parse(localStorage.getItem("localhighScores"));
-        console.log(highScores);
+        //Giving user answer to highscore
         highScores.push(user);
-        console.log(highScores);
-        console.log(user);
-        for (var i = 0; i < highScores.length; i++) {
-          for (var j = 1; j < highScores.length; j++) {
+        //List for highest scores
+        for (let i = 0; i < highScores.length; i++) {
+          for (let j = 1; j < highScores.length; j++) {
             if (highScores[i].score <= highScores[j].score) {
               let temp = highScores[i];
               highScores[i] = highScores[j];
@@ -199,10 +205,9 @@ function showQuestions() {
             }
           }
         }
-        console.log(highScores);
+        //Display 5 submitted scores
         if (highScores.length < 5) {
           localStorage.setItem("localhighScores", JSON.stringify(highScores));
-          console.log(JSON.parse(localStorage.getItem("localhighScores")));
         } else {
           localStorage.setItem(
             "localhighScores",
@@ -214,10 +219,8 @@ function showQuestions() {
         let highScores = [user];
         localStorage.setItem("localhighScores", JSON.stringify(highScores));
       }
-
-      console.log(JSON.parse(localStorage.getItem("localhighScores")));
     };
-
+    //Display text that quiz is over, and ask from user that want to submit their score
     containerEl.innerHTML = "";
     var endGameEl = document.createElement("div");
     endGameEl.setAttribute("class", "P");
@@ -233,15 +236,14 @@ function showQuestions() {
     endGameEl.appendChild(cancelBtn);
   }
 }
-
+//Subtract 15 seconds if user pick wrong answer
 function penaltyTime() {
   var penalty = 15;
   var remainingT = time - penalty;
   time = remainingT;
 }
-
+//Each question is giving 15 sec & its multiplied by total number of question
 function startTimer() {
-  console.log("timer");
   var defaultTime = 15 * questions.length;
   var displayTimer = document.getElementById("countDown");
   time = defaultTime;
@@ -254,19 +256,11 @@ function startTimer() {
     }
   }, 1000);
 }
+//Stop time when there is no question
 function stopTimer() {
   clearInterval(mainInterval);
 }
-
-document.addEventListener("click", function (e) {
-  if (e.target.id === "btn") {
-  }
-});
-
-document.addEventListener("click", function () {
-  document.getElementById("submit-btn");
-});
-
+//Quiz contains start btn action and when user press the start btn it will display first question with time
 quiz.addEventListener("click", function () {
   document.querySelector(".main-container").innerHTML = "";
   showQuestions();

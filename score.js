@@ -1,12 +1,11 @@
 let highScores = JSON.parse(localStorage.getItem("localhighScores"));
 let numbers = 1;
-console.log(highScores[0]);
 
 // highScores.forEach((el) => createHighScore(el));
 for (let i = 0; i < highScores.length; i++) {
   createHighScore(highScores[i]);
 }
-
+//Displaying highest scores
 function createHighScore(scores) {
   var number = document.createElement("div");
   number.innerHTML = numbers;
