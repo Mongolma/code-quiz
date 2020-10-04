@@ -9,3 +9,8 @@ When student press start it presents question with time. If students gave wrong 
 
 ## The URL of the functional, deployed application & GitHub repository
 
+https://github.com/Mongolma/code-quiz
+https://mongolma.github.io/code-quiz/
+
+##Screenshot
+
