@@ -1,3 +1,11 @@
 ## Code-quiz
 
-Build a timed code quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
+This is a timed code quiz with multiple-choice questions. It's very useful for coding bootcamp students.
+
+## Usage of this quiz
+
+When student press start it presents question with time. If students gave wrong answert it will penalize 15 seconds of the time. When its reached the end of the questions or timer reaches 0 game is over and it gives option to initialize their score.
+
+
+## The URL of the functional, deployed application & GitHub repository
+
